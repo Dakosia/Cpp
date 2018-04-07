@@ -135,11 +135,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="InvoiceItem.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="InvoiceItem.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
