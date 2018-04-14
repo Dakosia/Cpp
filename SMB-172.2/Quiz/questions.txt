@@ -1,0 +1,8 @@
+question: 1. ARE YOU MARRIED?
+answer: 1) YES
+answer: 2) NO
+right: 1
+question: 1. ARE YOU NOT MARRIED?
+answer: 1) YES
+answer: 2) NO
+right: 2

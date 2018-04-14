@@ -1,0 +1,39 @@
+1) TDD, BDD
+2) CI/CD
+3) OOP, FP
+4) 100% coverage
+5) Algorithms
+6) Concurrency
+7) ML/MV
+
+0) Algorithms and data structures
+acmp.ru:50, 20%
+1) OOP: 24 patterns of OOP:
+https://habrahabr.ru/post/136766/
+https://habrahabr.ru/post/210288/
+http://www.dofactory.com/
+iOS: closure, delegation
+Android: adapter
+Web: prototype-oriented programming, promise/observable
+Server: Repository, CQRS, Multi-Tier, Active Record
+Common: MVC
+2) 
+iOS: Swift - raywenderlich
+Android: Java -> Kotlin - google developers, blueprints
+Web: JS -> Angular/React/Vue/jQuery
+https://learn.javascript.ru/
+https://www.codecademy.com/learn/introduction-to-javascript
+https://www.tutorialspoint.com
+Server:
+C# - ASP.NET MVC, Web API
+PHP - Laravel, Yii 2, CodeIgniter(слать заказчиков) - CRUD
+Python - Django MVC, DRF
+Java 8 - Spring MVC, RESTEasy
+Go - tour
+3)
+DB:
+RDBMS, Active Record, ORM
+4)
+Git: gitflow
+5) TDD - obey the testing goat
+6) Docker - https://www.pluralsight.com/courses/docker-containers-big-picture
