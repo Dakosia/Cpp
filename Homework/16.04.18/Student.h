@@ -5,7 +5,7 @@ class Student
 {
 private:
 	std::string lastName; //фамилия
-	std::string firstName; //имя - в динамической памяти
+	std::string firstName; //имя
 	std::string middleName; //отчество
 	std::string dateOfBirth;
 	std::string phoneNumber;
