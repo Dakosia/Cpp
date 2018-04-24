@@ -4,8 +4,36 @@
 
 Time_::Time_()
 {
+	hour = 0;
+	minute = 0;
+	second = 0;
 }
 
+Time_::Time_(int _hour)
+{
+	setHour(_hour);
+	minute = 0;
+	second = 0;
+}
+
+Time_::Time_(int _hour, int _minute)
+{
+	setHour(_hour);
+	setMinute(_minute);
+	second = 0;
+}
+
+
+Time_::Time_(int _hour, int _minute, int _second)
+{
+	setHour(_hour);
+	setMinute(_minute);
+	setSecond(_second);
+}
+
+//Time_::Time_(int _hour = 0, int _minute = 0, int _second = 0)
+//{
+//}
 
 Time_::~Time_()
 {
