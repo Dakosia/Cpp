@@ -6,18 +6,50 @@ private:
 	int numerator; //числитель
 	int denominator; //знаменатель
 public:
-	Fraction();
+	explicit Fraction(int numerator = 0, int denominator = 1);
 	~Fraction();
 
 	void setNumerator(int);
 	void setDenominator(int);
 	int getNumerator();
 	int getDenominator();
-	
 
 	void Input();
-	double getDecimal();
+	double getDecimal() const;
 	int getIntegralPart();
 
+	const Fraction& operator+=(const Fraction &a); //this += a
+	const Fraction& operator-=(const Fraction &a); //this -= a
+	const Fraction& operator*=(const Fraction &a); //this *= a
+	const Fraction& operator/=(const Fraction &a); //this /= a
+	void operator+=(int a);
+	void operator-=(int a);
+	void operator*=(int a);
+	void operator/=(int a);
+
+	//prefix
+	const Fraction& operator++();
+	const Fraction& operator--();
+	//postfix
+	const Fraction& operator++(int);
+	const Fraction& operator--(int);
+
+	//перегрузка операции + в виде метода класса
+	//Fraction operator+(const Fraction &a);
 };
 
+//перегрузка операции + в виде глобальной функции
+Fraction operator+(const Fraction &a, const Fraction &b);
+Fraction operator-(const Fraction &a, const Fraction &b);
+Fraction operator*(const Fraction &a, const Fraction &b);
+Fraction operator/(const Fraction &a, const Fraction &b);
+Fraction operator+(const Fraction &a, int b);
+Fraction operator-(const Fraction &a, int b);
+Fraction operator*(const Fraction &a, int b);
+Fraction operator/(const Fraction &a, int b);
+bool operator>(const Fraction &a, const Fraction &b);
+bool operator<(const Fraction &a, const Fraction &b);
+bool operator>=(const Fraction &a, const Fraction &b);
+bool operator<=(const Fraction &a, const Fraction &b);
+bool operator!=(const Fraction &a, const Fraction &b);
+bool operator==(const Fraction &a, const Fraction &b);
