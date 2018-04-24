@@ -39,17 +39,11 @@ void fraction()
 
 void student()
 {
-	Student s;
-	s.setLastName("Qwerty");
-	s.setFirstName("Ytrewq");
-	s.setMiddleName("Qweytr");
-	s.setDateOfBirth("1990");
-	s.setPhoneNumber("12345678910");
-	s.setAddress("Nfjskfvfdsa");
-	s.setFaculty("IT");
-	s.setCourse(2);
-	s.setRating(1);
-	s.print();
+	int *arr = new int[5]{ 5, 1, 5, 8, 12 };
+	Student s1("Vasya", 18, "SMP-172.2", arr);
+	s1.print();
+	/*Student s2 = s1;
+	s2.print();*/
 
 }
 
