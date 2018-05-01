@@ -8,29 +8,43 @@ private:
 	int minute;
 	int second;
 public:
-	//default constructor
-	Time_();
-	//constructor with settings
-	Time_(int);
-	Time_(int, int);
-	Time_(int, int, int);
-	//constructor with default settings
-	//Time_(int _hour = 0, int _minute = 0, int _second = 0);
+	Time_(int hour = 0, int minute = 0, int second = 0);
 
 	~Time_();
 
 	//getter
-	int getHour();
-	int getMinute();
-	int getSecond();
+	int getHour() const;
+	int getMinute() const;
+	int getSecond() const;
 	//setter
-	void setHour(int);
-	void setMinute(int);
-	void setSecond(int);
+	void setHour(int hour);
+	void setMinute(int minute);
+	void setSecond(int second);
 
-	void printTime();
+	void printTime() const;
 
-	void addHour();
-	void addMinute();
-	void addSecond();
+	void addHour(int hour = 0);
+	void addMinute(int minute = 0);
+	void addSecond(int second = 0);
+	void reduceHour(int hour = 0);
+	void reduceMinute(int minute = 0);
+	void reduceSecond(int second = 0);
+
+	const Time_& operator++();
+	const Time_& operator++(int);
+	const Time_& operator--();
+	const Time_& operator--(int);
+
+	const Time_& operator+=(const Time_ &a);
+	const Time_& operator-=(const Time_ &a);
 };
+
+std::ostream& operator<<(std::ostream &out, const Time_ &a);
+std::istream& operator >> (std::istream &in, Time_ &a);
+
+bool operator>(const Time_ &a, const Time_ &b);
+bool operator<(const Time_ &a, const Time_ &b);
+bool operator>=(const Time_ &a, const Time_ &b);
+bool operator<=(const Time_ &a, const Time_ &b);
+bool operator!=(const Time_ &a, const Time_ &b);
+bool operator==(const Time_ &a, const Time_ &b);

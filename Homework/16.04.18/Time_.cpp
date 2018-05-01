@@ -1,120 +1,273 @@
-#include "Time_.h"
+﻿#include "Time_.h"
 
 
 
-Time_::Time_()
+Time_::Time_(int hour, int minute, int second)
 {
-	hour = 0;
-	minute = 0;
-	second = 0;
+	this->setHour(hour);
+	this->setMinute(minute);
+	this->setSecond(second);
 }
-
-Time_::Time_(int _hour)
-{
-	setHour(_hour);
-	minute = 0;
-	second = 0;
-}
-
-Time_::Time_(int _hour, int _minute)
-{
-	setHour(_hour);
-	setMinute(_minute);
-	second = 0;
-}
-
-
-Time_::Time_(int _hour, int _minute, int _second)
-{
-	setHour(_hour);
-	setMinute(_minute);
-	setSecond(_second);
-}
-
-//Time_::Time_(int _hour = 0, int _minute = 0, int _second = 0)
-//{
-//}
 
 Time_::~Time_()
 {
 }
 
-int Time_::getHour()
+int Time_::getHour() const
 {
-	return hour;
+	return this->hour;
 }
 
-int Time_::getMinute()
+int Time_::getMinute() const
 {
-	return minute;
+	return this->minute;
 }
 
-int Time_::getSecond()
+int Time_::getSecond() const
 {
-	return second;
+	return this->second;
 }
 
-void Time_::setHour(int _hour)
+void Time_::setHour(int hour)
 {
-	if (_hour >= 24 && _hour < 0)
-		hour = 0;
+	if (hour >= 24 && hour < 0)
+		this->hour = 0;
 	else
-		hour = _hour;
+		this->hour = hour;
 }
 
-void Time_::setMinute(int _minute)
+void Time_::setMinute(int minute)
 {
-	if (_minute > 59 && _minute < 0)
-		minute = 0;
+	if (minute > 59 && minute < 0)
+		this->minute = 0;
 	else
-		minute = _minute;
+		this->minute = minute;
 }
 
-void Time_::setSecond(int _second)
+void Time_::setSecond(int second)
 {
-	if (_second > 59 && _second < 0)
-		second = 0;
+	if (second > 59 && second < 0)
+		this->second = 0;
 	else
-		second = _second;
+		this->second = second;
 }
 
-void Time_::printTime()
+void Time_::printTime() const
 {
-	if (hour < 10)
+	if (this->hour < 10)
 		std::cout << "0";
-	std::cout << hour << ":";
-	if (minute < 10)
+	std::cout << this->hour << ":";
+	if (this->minute < 10)
 		std::cout << "0";
-	std::cout << minute << ":";
-	if (second < 10)
+	std::cout << this->minute << ":";
+	if (this->second < 10)
 		std::cout << "0";
-	std::cout << second << std::endl;
-	//std::cout << hour << ":" << minute << ":" << second << std::endl;
+	std::cout << this->second << std::endl;
 }
 
-void Time_::addHour()
+void Time_::addHour(int hour)
 {
-	hour++;
-	if (hour == 24)
-		hour = 0;
+	int new_hour = this->hour + hour;
+	this->hour = new_hour % 24; //73 % 24 = 1
 }
 
-void Time_::addMinute()
+void Time_::addMinute(int minute)
 {
-	minute++;
-	if (minute == 60)
+	int new_minute = this->minute + minute;
+	this->minute = new_minute % 60;
+	new_minute /= 60;
+	addHour(new_minute);
+}
+
+void Time_::addSecond(int second)
+{
+	int new_second = this->second + second;
+	this->second = new_second % 60;
+	new_second /= 60;
+	addMinute(new_second);
+}
+
+void Time_::reduceHour(int hour)
+{
+	if (this->hour >= hour)
 	{
-		minute = 0;
-		addHour();
+		this->hour -= hour;
+	}
+	else
+	{
+		this->hour = 24 - (hour - this->hour);
+		if (this->hour < 0)
+		{
+			this->hour = this->hour + 24 * (hour / 24);
+			if (this->hour >= 24)
+				this->hour -= 24;
+		}
 	}
 }
 
-void Time_::addSecond()
+void Time_::reduceMinute(int minute)
 {
-	second++;
-	if (second == 60)
+	int tmp = this->minute;
+	if (this->minute >= minute)
 	{
-		second = 0;
-		addMinute();
+		this->minute -= minute;
 	}
+	else
+	{
+		this->minute = 60 - (minute - this->minute);
+		if (this->minute < 0)
+		{
+			this->minute = this->minute + 60 * (minute / 60);
+			if (this->minute >= 60)
+				this->minute -= 60;
+		}
+	}
+	if (minute % 60 > tmp)
+		this->reduceHour(minute / 60 + 1);
+	else 
+		this->reduceHour(minute / 60);
+}
+
+void Time_::reduceSecond(int second)
+{
+	int tmp = this->second;
+	if (this->second >= second)
+	{
+		this->second -= second;
+	}
+	else
+	{
+		this->second = 60 - (second - this->second);
+		if (this->second < 0)
+		{
+			this->second = this->second + 60 * (second / 60);
+			if (this->second >= 60)
+				this->second -= 60;
+		}
+	}
+	if (second % 60 > tmp)
+		this->reduceMinute(second / 60 + 1);
+	else
+		this->reduceMinute(second / 60);
+}
+
+const Time_ & Time_::operator++()
+{
+	this->addSecond(1);
+	return *this;
+}
+
+const Time_ & Time_::operator++(int)
+{
+	Time_ tmp(*this);
+	this->addSecond(1);
+	return tmp;
+}
+
+const Time_ & Time_::operator--()
+{
+	this->reduceSecond(1);
+	return *this;
+}
+
+const Time_ & Time_::operator--(int)
+{
+	Time_ tmp(*this);
+	this->reduceSecond(1);
+	return tmp;
+}
+
+const Time_ & Time_::operator+=(const Time_ & a)
+{
+	this->addHour(a.hour);
+	this->addMinute(a.minute);
+	this->addSecond(a.second);
+	return *this;
+}
+
+const Time_ & Time_::operator-=(const Time_ & a)
+{
+	this->reduceHour(a.hour);
+	this->reduceMinute(a.minute);
+	this->reduceSecond(a.second);
+	return *this;
+}
+
+std::ostream & operator<<(std::ostream & out, const Time_ & a)
+{
+	a.printTime();
+	return out;
+}
+
+std::istream & operator >> (std::istream & in, Time_ & a)
+{
+	int hour, minute, second;
+	//std::cout << "Введите часы\n";
+	in >> hour;
+	//std::cout << "Введите минуты\n";
+	in >> minute;
+	//std::cout << "Введите секунды\n";
+	in >> second;
+	a.setHour(hour);
+	a.setMinute(minute);
+	a.setSecond(second);
+	return in;
+}
+
+bool operator>(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() > b.getHour())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() > b.getMinute())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() == b.getMinute() && a.getSecond() > b.getSecond())
+		return true;
+	return false;
+}
+
+bool operator<(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() < b.getHour())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() < b.getMinute())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() == b.getMinute() && a.getSecond() < b.getSecond())
+		return true;
+	return false;
+}
+
+bool operator>=(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() >= b.getHour())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() >= b.getMinute())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() == b.getMinute() && a.getSecond() >= b.getSecond())
+		return true;
+	return false;
+}
+
+bool operator<=(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() <= b.getHour())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() <= b.getMinute())
+		return true;
+	if (a.getHour() == b.getHour() && a.getMinute() == b.getMinute() && a.getSecond() <= b.getSecond())
+		return true;
+	return false;
+}
+
+bool operator!=(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() != b.getHour() && a.getMinute() != b.getMinute() && a.getSecond() != b.getSecond())
+		return true;
+	return false;
+}
+
+bool operator==(const Time_ & a, const Time_ & b)
+{
+	if (a.getHour() == b.getHour() && a.getMinute() == b.getMinute() && a.getSecond() == b.getSecond())
+		return true;
+	return false;
 }

@@ -24,8 +24,16 @@ void time()
 	Time_ t3(17, 8); //17:08:00
 	Time_ t4(10, 45, 20); //10:45:20
 	t1.printTime();
+	t1.reduceHour(5);
+	t1.printTime();
+	t2.printTime();
+	t2.reduceMinute(17);
 	t2.printTime();
 	t3.printTime();
+	t3.reduceMinute(130);
+	t3.printTime();
+	t4.printTime();
+	t4.reduceSecond(140);
 	t4.printTime();
 }
 
@@ -73,9 +81,9 @@ void student()
 
 int main()
 {
-	//time();
+	time();
 	//date();
-	fraction();
+	//fraction();
 	//student();
 	
 	system("pause");
