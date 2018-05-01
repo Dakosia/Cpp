@@ -34,6 +34,15 @@ public:
 	const Fraction& operator++(int);
 	const Fraction& operator--(int);
 
+	operator double()
+	{
+		return this->getDecimal();
+	}
+	operator int()
+	{
+		return numerator / denominator;
+	}
+
 	//перегрузка операции + в виде метода класса
 	//Fraction operator+(const Fraction &a);
 };
@@ -53,3 +62,8 @@ bool operator>=(const Fraction &a, const Fraction &b);
 bool operator<=(const Fraction &a, const Fraction &b);
 bool operator!=(const Fraction &a, const Fraction &b);
 bool operator==(const Fraction &a, const Fraction &b);
+
+Fraction operator-(Fraction b);
+
+std::ostream& operator<<(std::ostream &out, const Fraction &a);
+std::istream& operator>>(std::istream &in, Fraction &a);

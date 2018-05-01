@@ -1,9 +1,11 @@
-#include "Fraction.h"
+﻿#include "Fraction.h"
 
 
 
-Fraction::Fraction(int numerator = 0, int denominator = 1)
+Fraction::Fraction(int numerator, int denominator)
 {
+	setNumerator(numerator);
+	setDenominator(denominator);
 }
 
 Fraction::~Fraction()
@@ -223,4 +225,29 @@ bool operator!=(const Fraction &a, const Fraction &b)
 bool operator==(const Fraction &a, const Fraction &b)
 {
 	return a.getDecimal() == b.getDecimal();
+}
+
+Fraction operator-(Fraction b)
+{
+	Fraction tmp(b);
+	tmp.setNumerator(tmp.getNumerator() * -1);
+	return tmp;
+}
+
+std::ostream& operator<<(std::ostream &out, const Fraction & a)
+{
+	out << a.getDecimal();
+	return out;
+}
+
+std::istream& operator>>(std::istream &in, Fraction & a)
+{
+	int x, y;
+	std::cout << "Введите числитель\n";
+	in >> x;
+	std::cout << "Введите знаменатель\n";
+	in >> y;
+	a.setNumerator(x);
+	a.setDenominator(y);
+	return in;
 }
