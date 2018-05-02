@@ -24,6 +24,11 @@ void vectorMy() {
 	v.reverse();
 	v.print();
 
+	/*VectorMy v(10, 5);
+	std::cout << v;*/
+	VectorMy s(4, 5);
+	v += s;
+	std::cout << v;
 
 	/*VectorMy vec;
 	vec.push_back(150);
@@ -32,14 +37,12 @@ void vectorMy() {
 	{
 	vec.push_back(rand() % 10);
 	}
-
 	VectorMy v2 = vec;
 	std::cout << "-------------\n";
 	vec.print();
 	std::cout << "-------------\n";
 	v2.print();
 	std::cout << "-------------\n";
-
 	vec.print();
 	for (size_t i = 0; i < 15; i++)
 	{
@@ -47,7 +50,7 @@ void vectorMy() {
 	vec.print();
 	}*/
 
-	
+
 }
 
 int main()
