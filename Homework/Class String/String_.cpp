@@ -79,6 +79,16 @@ void String_::append()
 {
 }
 
+char & String_::operator[](int ind)
+{
+	return str[ind];
+}
+
+char & String_::operator[](int ind) const
+{
+	return str[ind];
+}
+
 String_& String_::operator=(const String_ & s)
 {
 	//защита от самоприсваивания
@@ -110,4 +120,16 @@ std::istream & operator >> (std::istream & in, String_ & a)
 	in >> hop;
 	a.setStr(hop);
 	return in;
+}
+
+bool operator==(const String_ & a, const String_ & b)
+{
+	if (a.length() != b.length())
+		return false;
+	for (size_t i = 0; i < a.length(); i++)
+	{
+		if (a[i] != b[i])
+			return false;
+	}
+	return true;
 }
