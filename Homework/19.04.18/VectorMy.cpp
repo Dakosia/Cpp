@@ -44,7 +44,7 @@ VectorMy::~VectorMy()
 	size = 0;
 }
 
-const VectorMy & VectorMy::operator=(const VectorMy & a)
+VectorMy & VectorMy::operator=(const VectorMy & a)
 {
 	if (&a == this)
 		return *this;
