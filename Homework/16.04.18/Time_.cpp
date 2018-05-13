@@ -65,6 +65,13 @@ void Time_::printTime() const
 	std::cout << this->second << std::endl;
 }
 
+void Time_::printSystemTime()
+{
+	time_t now = time(0);
+	tm* localtm = localtime(&now);
+	std::cout << "The local date and time is: " << asctime(localtm);
+}
+
 void Time_::addHour(int hour)
 {
 	int new_hour = this->hour + hour;

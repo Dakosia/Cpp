@@ -23,7 +23,7 @@ void time()
 	Time_ t2(5); //05:00:00
 	Time_ t3(17, 8); //17:08:00
 	Time_ t4(10, 45, 20); //10:45:20
-	t1.printTime();
+	/*t1.printTime();
 	t1.reduceHour(5);
 	t1.printTime();
 	t2.printTime();
@@ -34,7 +34,10 @@ void time()
 	t3.printTime();
 	t4.printTime();
 	t4.reduceSecond(140);
-	t4.printTime();
+	t4.printTime();*/
+
+	t1.printSystemTime();
+	t2.printSystemTime();
 }
 
 void date()

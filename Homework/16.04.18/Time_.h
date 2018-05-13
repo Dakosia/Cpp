@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <ctime>
 
 class Time_
 {
@@ -22,6 +23,7 @@ public:
 	void setSecond(int second);
 
 	void printTime() const;
+	static void printSystemTime();
 
 	void addHour(int hour = 0);
 	void addMinute(int minute = 0);
