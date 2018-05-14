@@ -9,14 +9,10 @@ public:
 	explicit Fraction(int numerator = 0, int denominator = 1);
 	~Fraction();
 
-	void setNumerator(int);
-	void setDenominator(int);
-	int getNumerator();
-	int getDenominator();
-
-	void Input();
-	double getDecimal() const;
-	int getIntegralPart();
+	void setNumerator(int numerator = 0);
+	void setDenominator(int denominator = 1);
+	int getNumerator() const;
+	int getDenominator() const;
 
 	const Fraction& operator+=(const Fraction &a); //this += a
 	const Fraction& operator-=(const Fraction &a); //this -= a
@@ -34,14 +30,9 @@ public:
 	const Fraction& operator++(int);
 	const Fraction& operator--(int);
 
-	operator double()
-	{
-		return this->getDecimal();
-	}
-	operator int()
-	{
-		return numerator / denominator;
-	}
+	double getDouble() const;
+	operator double() const;
+	operator int() const;
 
 	//перегрузка операции + в виде метода класса
 	//Fraction operator+(const Fraction &a);
@@ -52,10 +43,6 @@ Fraction operator+(const Fraction &a, const Fraction &b);
 Fraction operator-(const Fraction &a, const Fraction &b);
 Fraction operator*(const Fraction &a, const Fraction &b);
 Fraction operator/(const Fraction &a, const Fraction &b);
-Fraction operator+(const Fraction &a, int b);
-Fraction operator-(const Fraction &a, int b);
-Fraction operator*(const Fraction &a, int b);
-Fraction operator/(const Fraction &a, int b);
 bool operator>(const Fraction &a, const Fraction &b);
 bool operator<(const Fraction &a, const Fraction &b);
 bool operator>=(const Fraction &a, const Fraction &b);
@@ -63,7 +50,30 @@ bool operator<=(const Fraction &a, const Fraction &b);
 bool operator!=(const Fraction &a, const Fraction &b);
 bool operator==(const Fraction &a, const Fraction &b);
 
+Fraction operator+(const Fraction &a, int b);
+Fraction operator-(const Fraction &a, int b);
+Fraction operator*(const Fraction &a, int b);
+Fraction operator/(const Fraction &a, int b);
+bool operator>(const Fraction &a, int b);
+bool operator<(const Fraction &a, int b);
+bool operator>=(const Fraction &a, int b);
+bool operator<=(const Fraction &a, int b);
+bool operator!=(const Fraction &a, int b);
+bool operator==(const Fraction &a, int b);
+
+Fraction operator+(int a, const Fraction &b);
+Fraction operator-(int a, const Fraction &b);
+Fraction operator*(int a, const Fraction &b);
+Fraction operator/(int a, const Fraction &b);
+bool operator>(int a, const Fraction &b);
+bool operator<(int a, const Fraction &b);
+bool operator>=(int a, const Fraction &b);
+bool operator<=(int a, const Fraction &b);
+bool operator!=(int a, const Fraction &b);
+bool operator==(int a, const Fraction &b);
+
 Fraction operator-(Fraction b);
+Fraction inverseFraction(Fraction b); //обратная дробь
 
 std::ostream& operator<<(std::ostream &out, const Fraction &a);
 std::istream& operator>>(std::istream &in, Fraction &a);

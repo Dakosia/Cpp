@@ -62,14 +62,13 @@ void fraction()
 	a += 55; //a.operator+=(55);
 
 
-	/*Fraction f;
+	Fraction f;
 	f.setNumerator(5);
 	f.setDenominator(15);
-	std::cout << f.getDecimal() << std::endl;
-	std::cout << f.getIntegralPart() << std::endl;
-	f.Input();
-	std::cout << f.getDecimal() << std::endl;
-	std::cout << f.getIntegralPart() << std::endl;*/
+	a = 4 / f;
+	std::cout << a << std::endl;
+	a = 4 - f;
+	std::cout << a << std::endl;
 }
 
 void student()
@@ -84,9 +83,9 @@ void student()
 
 int main()
 {
-	time();
+	//time();
 	//date();
-	//fraction();
+	fraction();
 	//student();
 	
 	system("pause");

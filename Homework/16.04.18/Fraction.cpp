@@ -25,29 +25,19 @@ void Fraction::setDenominator(int denominator)
 		this->denominator = denominator;
 }
 
-int Fraction::getNumerator()
+int Fraction::getNumerator() const
 {
 	return this->numerator;
 }
 
-int Fraction::getDenominator()
+int Fraction::getDenominator() const
 {
 	return this->denominator;
 }
 
-void Fraction::Input()
+double Fraction::getDouble() const
 {
-	std::cin >> this->numerator >> this->denominator;
-}
-
-double Fraction::getDecimal() const
-{
-	return (double)this->numerator / this->denominator;
-}
-
-int Fraction::getIntegralPart()
-{
-	return (int)this->numerator / this->denominator;
+	return double(this->numerator) / this->denominator;
 }
 
 const Fraction& Fraction::operator+=(const Fraction &a)
@@ -131,6 +121,16 @@ const Fraction & Fraction::operator--(int)
 	return tmp;
 }
 
+Fraction::operator double() const
+{
+	return this->getDouble();
+}
+
+Fraction::operator int() const
+{
+	return this->numerator / this->denominator;
+}
+
 //Fraction Fraction::operator+(const Fraction & a)
 //{
 //	//Fraction c(*this);
@@ -169,6 +169,36 @@ Fraction operator/(const Fraction &a, const Fraction &b)
 	return c;
 }
 
+bool operator>(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() > b.getDouble();
+}
+
+bool operator<(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() < b.getDouble();
+}
+
+bool operator>=(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() >= b.getDouble();
+}
+
+bool operator<=(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() <= b.getDouble();
+}
+
+bool operator!=(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() != b.getDouble();
+}
+
+bool operator==(const Fraction &a, const Fraction &b)
+{
+	return a.getDouble() == b.getDouble();
+}
+
 Fraction operator+(const Fraction &a, int b)
 {
 	Fraction c = a;
@@ -197,34 +227,93 @@ Fraction operator/(const Fraction & a, int b)
 	return c;
 }
 
-bool operator>(const Fraction &a, const Fraction &b)
+bool operator>(const Fraction & a, int b)
 {
-	return a.getDecimal() > b.getDecimal();
+	return a.getDouble() > b;
 }
 
-bool operator<(const Fraction &a, const Fraction &b)
+bool operator<(const Fraction & a, int b)
 {
-	return a.getDecimal() < b.getDecimal();
+	return a.getDouble() < b;
 }
 
-bool operator>=(const Fraction &a, const Fraction &b)
+bool operator>=(const Fraction & a, int b)
 {
-	return a.getDecimal() >= b.getDecimal();
+	return a.getDouble() >= b;
 }
 
-bool operator<=(const Fraction &a, const Fraction &b)
+bool operator<=(const Fraction & a, int b)
 {
-	return a.getDecimal() <= b.getDecimal();
+	return a.getDouble() <= b;
 }
 
-bool operator!=(const Fraction &a, const Fraction &b)
+bool operator!=(const Fraction & a, int b)
 {
-	return a.getDecimal() != b.getDecimal();
+	return a.getDouble() != b;
 }
 
-bool operator==(const Fraction &a, const Fraction &b)
+bool operator==(const Fraction & a, int b)
 {
-	return a.getDecimal() == b.getDecimal();
+	return a.getDouble() == b;
+}
+
+Fraction operator+(int a, const Fraction & b)
+{
+	Fraction c = b;
+	c += a;
+	return c;
+}
+
+Fraction operator-(int a, const Fraction & b)
+{
+	Fraction c = b;
+	c -= a;
+	return -c;
+}
+
+Fraction operator*(int a, const Fraction & b)
+{
+	Fraction c = b;
+	c *= a;
+	return c;
+}
+
+Fraction operator/(int a, const Fraction & b)
+{
+	Fraction c = b;
+	c /= a;
+	c = inverseFraction(c);
+	return c;
+}
+
+bool operator>(int a, const Fraction & b)
+{
+	return a > b.getDouble();
+}
+
+bool operator<(int a, const Fraction & b)
+{
+	return a < b.getDouble();
+}
+
+bool operator>=(int a, const Fraction & b)
+{
+	return a >= b.getDouble();
+}
+
+bool operator<=(int a, const Fraction & b)
+{
+	return a <= b.getDouble();
+}
+
+bool operator!=(int a, const Fraction & b)
+{
+	return a != b.getDouble();
+}
+
+bool operator==(int a, const Fraction & b)
+{
+	return a == b.getDouble();
 }
 
 Fraction operator-(Fraction b)
@@ -234,9 +323,17 @@ Fraction operator-(Fraction b)
 	return tmp;
 }
 
+Fraction inverseFraction(Fraction b)
+{
+	Fraction tmp(b);
+	tmp.setNumerator(b.getDenominator());
+	tmp.setDenominator(b.getNumerator());
+	return tmp;
+}
+
 std::ostream& operator<<(std::ostream &out, const Fraction & a)
 {
-	out << a.getDecimal();
+	out << a.getDouble();
 	return out;
 }
 
