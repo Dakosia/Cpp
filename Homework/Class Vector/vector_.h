@@ -21,7 +21,7 @@ public:
 	void pop_back();
 	void reverse();
 	void erase(int pos);
-	void insert(int pos, int value);
+	void insert(int pos, const T value);
 	vector_<T>& operator+=(const vector_<T> &obj);
 	//T at(int pos);
 	T& operator[](int pos);
@@ -29,10 +29,10 @@ public:
 	template<class TT>
 	friend std::ostream& operator<<(std::ostream &out, const vector_<TT> &a);
 	template<class TT>
-	friend std::istream& operator>>(std::istream &in, vector_<TT> &a);
+	friend std::istream& operator >> (std::istream &in, vector_<TT> &a);
 
 };
 template<class TT>
 std::ostream& operator<<(std::ostream &out, const vector_<TT> &a);
 template<class TT>
-std::istream& operator>>(std::istream &in, vector_<TT> &a);
+std::istream& operator >> (std::istream &in, vector_<TT> &a);

@@ -148,22 +148,23 @@ void vector_<T>::erase(int pos)
 }
 
 template<class T>
-void vector_<T>::insert(int pos, int value)
+void vector_<T>::insert(int pos, const T value)
 {
-	T *new_arr;
-	if (size == 0 || pos >= size) return;
-	new_arr = new T[size + 1];
-	for (int i = 0; i < pos; i++)
+	T *new_arr = new T[size + 1];
+	int mark = 0;
+	for (size_t i = 0; i < size + 1; i++)
 	{
-		new_arr[i] = this->arr[i];
-	}
-	new_arr[pos] = value;
-	for (int i = pos + 1; i < size + 1; i++)
-	{
-		new_arr[i] = this->arr[i - 1];
+		if (i == pos)
+		{
+			new_arr[i] = val;
+			mark = 1;
+		}
+		else
+			new_arr[i] = this->arr[i - mark];
 	}
 	++size;
-	delete[] this->arr;
+	if (this->arr != nullptr)
+		delete[] this->arr;
 	this->arr = new_arr;
 }
 
@@ -204,7 +205,7 @@ std::ostream & operator<<(std::ostream & out, const vector_<TT>& a)
 }
 
 template<class TT>
-std::istream & operator>>(std::istream & in, vector_<TT>& a)
+std::istream & operator >> (std::istream & in, vector_<TT>& a)
 {
 	a.clear();
 	std::cout << "Enter size\n";
