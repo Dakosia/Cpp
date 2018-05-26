@@ -166,6 +166,56 @@ public:
 			this->~singleLinkedList();
 	}
 	bool empty() const { return size == 0; }
+	
+	elem<T>* searchElement(const T& obj)
+	{
+		elem<T> *tmp = head;
+		for (size_t i = 0; i < size; i++)
+		{
+			if (tmp->obj == obj)
+				return tmp;
+			tmp = tmp->next;
+		}
+		return nullptr;
+	}
+	void replaceValue(const T& obj1, const T& obj2)
+	{
+		elem<T> *tmp = head;
+		for (int i = 0; i < size; i++)
+		{
+			if (tmp->obj == obj1)
+				tmp->obj = obj2;
+			tmp = tmp->next;
+		}
+	}
+	void deleteValue(const T& obj)
+	{
+		elem<T> *tmp1 = head;
+		elem<T> *tmp2 = nullptr;
+		for (int i = 0; i < size; i++)
+		{
+			tmp2 = tmp1->next;
+			if (tmp1->obj == obj)
+			{
+				erase(i);
+				tmp1 = tmp2;
+				--i;
+			}
+			else
+				tmp1 = tmp1->next;
+		}
+	}
+	void printReverse()
+	{
+		printReverseRecursively(head);
+	}
+	void printReverseRecursively(elem<T> *head)
+	{
+		if (head == nullptr)
+			return;
+		printReverseRecursively(head->next);
+		std::cout << head->obj << " ";
+	}
 
 	void print()
 	{

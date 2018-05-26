@@ -13,7 +13,24 @@ void list()
 		t.push_front(i * i);
 	}
 	t.print();
+	std::cout << std::endl;
 
+	std::cout << t.searchElement(25) << std::endl;
+
+	t.replaceValue(16, 1);
+	t.print();
+	std::cout << std::endl;
+
+	t.replaceValue(1, 0);
+	t.print();
+	std::cout << std::endl;
+
+	t.deleteValue(0);
+	t.print();
+	std::cout << std::endl;
+
+	t.printReverse();
+	std::cout << std::endl;
 }
 
 void doubleList()
@@ -47,8 +64,8 @@ void doubleList()
 
 int main()
 {
-	//list();
-	doubleList();
+	list();
+	//doubleList();
 
 	system("pause");
 	return 0;
