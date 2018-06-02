@@ -2,74 +2,52 @@
 
 
 
-//Date_::Date_()
-//{
-//	day = 1;
-//	month = 1;
-//	year = 1990;
-//}
-//
-//
-//Date_::Date_(int d)
-//{
-//	setDay(d);
-//	month = 1;
-//	year = 1990;
-//}
-//
-//Date_::Date_(int d, int m)
-//{
-//	setDay(d);
-//	setMonth(m);
-//	year = 1990;
-//}
-//
-//Date_::Date_(int d, int m, int y)
-//{
-//	setDay(d);
-//	setMonth(m);
-//	setYear(y);
-//}
-
-Date_::Date_(int d = 1, int m = 1, int y = 1990)
+Date_::Date_(int day, int month, int year)
 {
+	this->setDay(day);
+	this->setMonth(month);
+	this->setYear(year);
 }
 
-Date_::~Date_()
+void Date_::setDay(int day)
 {
-}
-
-void Date_::setDay(int d)
-{
-	if (d > 31 || d < 0)
-		day = 1;
+	if (day > 31 || day <= 0)
+		this->day = 1;
 	else
-		day = d;
+		this->day = day;
 }
 
-void Date_::setMonth(int m)
+void Date_::setMonth(int month)
 {
-	if (m > 12 || m < 0)
-		month = 1;
+	if (month > 12 || month <= 0)
+		this->month = 1;
 	else
-		month = m;
+		this->month = month;
 }
 
-void Date_::setYear(int y)
+void Date_::setYear(int year)
 {
-	if (y > 2999 || y < 1899)
-		year = 1900;
+	if (year > 2999 || year < 1899)
+		this->year = 1900;
 	else
-		year = y;
+		this->year = year;
 }
 
-void Date_::printDate()
+std::string Date_::getDate() const
 {
+	std::string s;
 	if (day < 10)
-		std::cout << "0";
-	std::cout << day << ".";
+		s += "0";
+	s += std::to_string(day) += ".";
 	if (month < 10)
-		std::cout << "0";
-	std::cout << month << ".";
-	std::cout << year << std::endl;
+		s += "0";
+	s += std::to_string(month) += ".";
+	s += std::to_string(year);
+	return s;
+}
+
+std::ostream & operator<<(std::ostream & out, const Date_ & obj)
+{
+	out << obj.getDate();
+	return out;
 }

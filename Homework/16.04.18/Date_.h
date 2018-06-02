@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 class Date_
 {
 private:
@@ -7,24 +8,19 @@ private:
 	int month;
 	int year;
 public:
-	//default constructor
-	//Date_();
-	//constructor with settings
-	//Date_(int);
-	//Date_(int, int);
-	//Date_(int, int, int);
-	//constructor with default settings
-	Date_(int d = 1, int m = 1, int y = 1990);
-	~Date_();
+	Date_(int day = 1, int month = 1, int year = 1990);
 
 	//setters
-	void setDay(int d);
-	void setMonth(int m);
-	void setYear(int y);
+	void setDay(int day);
+	void setMonth(int month);
+	void setYear(int year);
 	//getters
-	int getDay() { return day; }
-	int	getMonth() { return month; }
-	int	getYear() { return year; }
+	int getDay() { return this->day; }
+	int	getMonth() { return this->month; }
+	int	getYear() { return this->year; }
+	std::string getDate() const;
 
-	void printDate();
+	friend std::ostream& operator<<(std::ostream &out, const Date_ &obj);
 };
+
+std::ostream& operator<<(std::ostream &out, const Date_ &obj);
