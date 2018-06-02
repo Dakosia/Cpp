@@ -23,3 +23,13 @@ void Bike::info() const
 	GroundVehicle::info();
 	std::cout << "Cadence: " << cadence << std::endl;
 }
+
+void Bike::start()
+{
+	std::cout << "Bike started to move" << std::endl;
+}
+
+void Bike::stop()
+{
+	std::cout << "Bike stopped" << std::endl;
+}

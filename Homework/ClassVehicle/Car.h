@@ -12,4 +12,6 @@ public:
 	int getNumberOfWheels() const;
 
 	void info() const;
+	void start() override;
+	void stop() override;
 };

@@ -26,3 +26,13 @@ void Tank::info() const
 	std::cout << "Engine power: " << getEnginePower() << std::endl;
 	std::cout << "Damage: " << damage << std::endl;
 }
+
+void Tank::start()
+{
+	std::cout << "Tank started to move" << std::endl;
+}
+
+void Tank::stop()
+{
+	std::cout << "Tank stopped" << std::endl;
+}

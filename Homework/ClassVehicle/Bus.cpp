@@ -23,3 +23,13 @@ void Bus::info() const
 	GroundVehicle::info();
 	std::cout << "Bus number: " << bus_number << std::endl;
 }
+
+void Bus::start()
+{
+	std::cout << "Bus started to move" << std::endl;
+}
+
+void Bus::stop()
+{
+	std::cout << "Bus stopped" << std::endl;
+}

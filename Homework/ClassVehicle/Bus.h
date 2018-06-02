@@ -12,5 +12,7 @@ public:
 	int getBusNumber() const;
 
 	void info() const;
+	void start() override;
+	void stop() override;
 };
 

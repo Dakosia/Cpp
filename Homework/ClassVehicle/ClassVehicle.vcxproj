@@ -140,6 +140,7 @@
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Crossroad.cpp" />
     <ClCompile Include="GroundVehicle.cpp" />
     <ClCompile Include="Helicopter.cpp" />
     <ClCompile Include="Plane.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Boat.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Crossroad.h" />
     <ClInclude Include="GroundVehicle.h" />
     <ClInclude Include="Helicopter.h" />
     <ClInclude Include="Plane.h" />

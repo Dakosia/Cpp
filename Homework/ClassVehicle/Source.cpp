@@ -1,15 +1,19 @@
-#include "Tank.h"
+#include "Crossroad.h"
 
-void tank()
+void crossroad()
 {
-	Tank t("T 85", 50, 5, 1000, 100);
-	t.info();
-
+	Crossroad r(10, 15, 40, 30);
+	while (true)
+	{
+		r.redLightOn();
+		r.greenLightOn();
+	}
 }
 
 int main()
 {
-	tank();
+	crossroad();
+
 	system("pause");
 	return 0;
 }

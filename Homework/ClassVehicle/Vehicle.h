@@ -22,5 +22,6 @@ public:
 	int getNumberOfSeats() const;
 
 	void info() const;
-	void start() {}
+	virtual void start() = 0;
+	virtual void stop() = 0;
 };

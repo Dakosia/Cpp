@@ -12,5 +12,6 @@ public:
 	int getCadence() const;
 
 	void info() const;
+	void start() override;
+	void stop() override;
 };
-

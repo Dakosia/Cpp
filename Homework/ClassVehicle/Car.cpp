@@ -23,3 +23,13 @@ void Car::info() const
 	GroundVehicle::info();
 	std::cout << "Number of wheels: " << number_of_wheels << std::endl;
 }
+
+void Car::start()
+{
+	std::cout << "Car started to move" << std::endl;
+}
+
+void Car::stop()
+{
+	std::cout << "Car stopped" << std::endl;
+}
