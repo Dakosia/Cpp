@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Date_.cpp" />
     <ClCompile Include="Fraction.cpp" />
+    <ClCompile Include="FractionPointer.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Time_.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Date_.h" />
     <ClInclude Include="Fraction.h" />
+    <ClInclude Include="FractionPointer.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Time_.h" />
   </ItemGroup>

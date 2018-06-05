@@ -4,13 +4,15 @@
 
 Time_::Time_(int hour, int minute, int second)
 {
+	if (hour >= 24 && hour < 0)
+		throw std::exception("non-existent hour");
+	if (minute > 59 && minute < 0)
+		throw std::exception("non-existent minute");
+	if (second > 59 && second < 0)
+		throw std::exception("non-existent second");
 	this->setHour(hour);
 	this->setMinute(minute);
 	this->setSecond(second);
-}
-
-Time_::~Time_()
-{
 }
 
 int Time_::getHour() const
@@ -131,7 +133,7 @@ void Time_::reduceMinute(int minute)
 	}
 	if (minute % 60 > tmp)
 		this->reduceHour(minute / 60 + 1);
-	else 
+	else
 		this->reduceHour(minute / 60);
 }
 

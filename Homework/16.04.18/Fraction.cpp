@@ -4,12 +4,10 @@
 
 Fraction::Fraction(int numerator, int denominator)
 {
+	if (denominator == 0)
+		throw std::exception("division by zero");
 	setNumerator(numerator);
 	setDenominator(denominator);
-}
-
-Fraction::~Fraction()
-{
 }
 
 void Fraction::setNumerator(int numerator)
@@ -337,7 +335,7 @@ std::ostream& operator<<(std::ostream &out, const Fraction & a)
 	return out;
 }
 
-std::istream& operator>>(std::istream &in, Fraction & a)
+std::istream& operator >> (std::istream &in, Fraction & a)
 {
 	int x, y;
 	std::cout << "Введите числитель\n";

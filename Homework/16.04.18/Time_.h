@@ -11,8 +11,6 @@ private:
 public:
 	Time_(int hour = 0, int minute = 0, int second = 0);
 
-	~Time_();
-
 	//getter
 	int getHour() const;
 	int getMinute() const;

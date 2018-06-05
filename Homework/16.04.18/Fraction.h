@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <iostream>
+
 class Fraction
 {
 private:
@@ -7,7 +8,6 @@ private:
 	int denominator; //знаменатель
 public:
 	explicit Fraction(int numerator = 0, int denominator = 1);
-	~Fraction();
 
 	void setNumerator(int numerator = 0);
 	void setDenominator(int denominator = 1);
@@ -76,4 +76,4 @@ Fraction operator-(Fraction b);
 Fraction inverseFraction(Fraction b); //обратная дробь
 
 std::ostream& operator<<(std::ostream &out, const Fraction &a);
-std::istream& operator>>(std::istream &in, Fraction &a);
+std::istream& operator >> (std::istream &in, Fraction &a);

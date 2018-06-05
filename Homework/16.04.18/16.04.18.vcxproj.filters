@@ -30,6 +30,9 @@
     <ClCompile Include="Date_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FractionPointer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time_.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Date_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FractionPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
