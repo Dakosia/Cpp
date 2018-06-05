@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-	class String_
+class String_
 {
 private:
 	char *str;
@@ -18,6 +18,8 @@ public:
 	bool empty() const;
 	const String_& operator+=(const String_ &str);
 	void append();
+	char& at(int pos);
+	const char& at(int pos) const;
 
 	char& String_::operator[](int ind);
 	char& String_::operator[](int ind) const;

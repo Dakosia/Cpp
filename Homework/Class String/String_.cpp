@@ -67,7 +67,7 @@ bool String_::empty() const
 const String_ & String_::operator+=(const String_ & obj)
 {
 	this->len += obj.len;
-	char *new_str = new char [this->len + 1];
+	char *new_str = new char[this->len + 1];
 	strcpy_s(new_str, this->len + 1, this->str);
 	strcat_s(new_str, this->len + 1, obj.str);
 	delete[] this->str;
@@ -77,6 +77,20 @@ const String_ & String_::operator+=(const String_ & obj)
 
 void String_::append()
 {
+}
+
+char & String_::at(int pos)
+{
+	if (pos > len || pos < 0)
+		throw std::exception("out of range");
+	return str[pos];
+}
+
+const char & String_::at(int pos) const
+{
+	if (pos > len || pos < 0)
+		throw std::exception("out of range");
+	return str[pos];
 }
 
 char & String_::operator[](int ind)
