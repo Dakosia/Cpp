@@ -146,16 +146,16 @@ Vehicle * Crossroad::randomVehicle()
 	switch (randVehicleType)
 	{
 	case 0:
-		v = new Bus(color[randColor], marks[randMarks], 100, 100, 300, 1);
+		v = new Bus(color[randColor], marks[randMarks], 100, 100, 700000, 300, 1);
 		break;
 	case 1:
-		v = new Car(color[randColor], marks[randMarks], 300, 2, 700, 4);
+		v = new Car(color[randColor], marks[randMarks], 300, 2, 500000, 700, 4);
 		break;
 	case 2:
-		v = new Tank(marks[randMarks], 80, 6, 1000, 2000);
+		v = new Tank(marks[randMarks], 80, 6, 1000000, 1000, 2000);
 		break;
 	case 3:
-		v = new Bike(color[randColor], marks[randMarks], 200, 1, 0, 100);
+		v = new Bike(color[randColor], marks[randMarks], 200, 1, 200000, 0, 100);
 		break;
 	}
 	return v;

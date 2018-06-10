@@ -147,6 +147,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Vehicle.cpp" />
+    <ClCompile Include="VehicleStore.cpp" />
     <ClCompile Include="WaterScooter.cpp" />
     <ClCompile Include="WaterVehicle.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Vehicle.h" />
+    <ClInclude Include="VehicleStore.h" />
     <ClInclude Include="WaterScooter.h" />
     <ClInclude Include="WaterVehicle.h" />
   </ItemGroup>

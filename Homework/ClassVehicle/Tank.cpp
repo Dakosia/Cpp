@@ -2,8 +2,8 @@
 
 
 
-Tank::Tank(std::string model, int max_speed, int number_of_seats, int engine_power, int damage) :
-	GroundVehicle("Green", model, max_speed, number_of_seats, engine_power)
+Tank::Tank(std::string model, int max_speed, int number_of_seats, int engine_power, int price, int damage) :
+	GroundVehicle("Green", model, max_speed, number_of_seats, price, engine_power)
 {
 	this->setDamage(damage);
 }
@@ -25,6 +25,14 @@ void Tank::info() const
 	std::cout << "Number of seats: " << getNumberOfSeats() << std::endl;
 	std::cout << "Engine power: " << getEnginePower() << std::endl;
 	std::cout << "Damage: " << damage << std::endl;
+}
+
+std::string Tank::codeInfo() const
+{
+	std::string str = "Tank;";
+	str += GroundVehicle::codeInfo();
+	str += std::to_string(damage) += ';';
+	return str;
 }
 
 void Tank::start()
