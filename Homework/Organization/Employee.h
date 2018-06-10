@@ -13,4 +13,5 @@ public:
 
 	virtual double getCoef() const = 0;
 	void getInfo() const override;
+	std::string codeInfo() const override;
 };

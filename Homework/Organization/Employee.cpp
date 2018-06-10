@@ -23,3 +23,10 @@ void Employee::getInfo() const
 	human::getInfo();
 	std::cout << "Work experience: " << experience << " years" << std::endl;
 }
+
+std::string Employee::codeInfo() const
+{
+	std::string str = human::codeInfo();
+	str += std::to_string(experience) += ';';
+	return str;
+}

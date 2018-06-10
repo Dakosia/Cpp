@@ -47,3 +47,14 @@ void human::getInfo() const
 	std::cout << "Birthdate: " << birthDate << std::endl;
 	std::cout << "Gender: " << (gender == 1 ? "Male" : "Female") << std::endl;
 }
+
+std::string human::codeInfo() const
+{
+	std::string str;
+	str = name + ';';
+	str += std::to_string(birthDate.getDay()) += ';';
+	str += std::to_string(birthDate.getMonth()) += ';';
+	str += std::to_string(birthDate.getYear()) += ';';
+	str += std::to_string(gender) += ';';
+	return str;
+}

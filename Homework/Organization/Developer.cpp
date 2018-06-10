@@ -2,11 +2,10 @@
 
 
 
-Developer::Developer(std::string name, Date_ d, bool gender, int experience, int nmbProgLangs, std::string specialization) :
+Developer::Developer(std::string name, Date_ d, bool gender, int experience, int nmbProgLangs) :
 	Employee(name, d, gender, experience)
 {
 	this->setNmbProgLangs(nmbProgLangs);
-	this->setSpecialization(specialization);
 }
 
 void Developer::setNmbProgLangs(int nmbProgLangs)
@@ -14,19 +13,9 @@ void Developer::setNmbProgLangs(int nmbProgLangs)
 	this->nmbProgLangs = nmbProgLangs;
 }
 
-void Developer::setSpecialization(std::string specialization)
-{
-	this->specialization = specialization;
-}
-
 int Developer::getNmbProgLangs() const
 {
 	return this->nmbProgLangs;
-}
-
-std::string Developer::getSpecialization() const
-{
-	return this->specialization;
 }
 
 double Developer::getCoef() const
@@ -42,5 +31,12 @@ void Developer::getInfo() const
 {
 	Employee::getInfo();
 	std::cout << "Programming languages: " << nmbProgLangs << std::endl;
-	std::cout << "Specialization: " << specialization << std::endl;
+}
+
+std::string Developer::codeInfo() const
+{
+	std::string str = "Developer;";
+	str += Employee::codeInfo();
+	str += std::to_string(nmbProgLangs) += ';';
+	return str;
 }

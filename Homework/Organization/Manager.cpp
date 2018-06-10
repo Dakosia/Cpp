@@ -32,3 +32,11 @@ void Manager::getInfo() const
 	Employee::getInfo();
 	std::cout << "Number of sales: " << nmbOfSales << std::endl;
 }
+
+std::string Manager::codeInfo() const
+{
+	std::string str = "Manager;";
+	str += Employee::codeInfo();
+	str += std::to_string(nmbOfSales) += ';';
+	return str;
+}

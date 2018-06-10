@@ -19,4 +19,5 @@ public:
 	bool getGender() const;
 
 	virtual void getInfo() const;
+	virtual std::string codeInfo() const;
 };

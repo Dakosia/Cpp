@@ -32,3 +32,11 @@ void Admin::getInfo() const
 	Employee::getInfo();
 	std::cout << "Number of computers: " << nmbOfComps << std::endl;
 }
+
+std::string Admin::codeInfo() const
+{
+	std::string str = "Admin;";
+	str += Employee::codeInfo();
+	str += std::to_string(nmbOfComps) += ';';
+	return str;
+}

@@ -39,6 +39,9 @@
     <ClCompile Include="Organization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Anykey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date_.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Organization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Anykey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

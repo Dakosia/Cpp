@@ -1,7 +1,12 @@
 #pragma once
 #include "Employee.h"
+#include "Developer.h"
+#include "Admin.h"
+#include "Manager.h"
+#include "Anykey.h"
 #include <vector>
 #include <memory>
+#include <fstream>
 class Organization
 {
 private:
@@ -25,4 +30,6 @@ public:
 	void needForSalary();
 
 	void getInfo() const;
+	void saveToFile() const;
+	void readFromFile();
 };

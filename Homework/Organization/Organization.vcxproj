@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="Anykey.cpp" />
     <ClCompile Include="Date_.cpp" />
     <ClCompile Include="Developer.cpp" />
     <ClCompile Include="Employee.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Anykey.h" />
     <ClInclude Include="Date_.h" />
     <ClInclude Include="Developer.h" />
     <ClInclude Include="Employee.h" />

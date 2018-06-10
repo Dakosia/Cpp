@@ -15,9 +15,9 @@ public:
 	void setMonth(int month);
 	void setYear(int year);
 	//getters
-	int getDay() { return this->day; }
-	int	getMonth() { return this->month; }
-	int	getYear() { return this->year; }
+	int getDay() const { return this->day; }
+	int	getMonth() const { return this->month; }
+	int	getYear() const { return this->year; }
 	std::string getDate() const;
 
 	friend std::ostream& operator<<(std::ostream &out, const Date_ &obj);

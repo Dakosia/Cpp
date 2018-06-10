@@ -1,12 +1,14 @@
 #include "Developer.h"
 #include "Admin.h"
 #include "Manager.h"
+#include "Anykey.h"
 #include "Organization.h"
 
 void interface(Organization &o);
 void addDeveloper(Organization &o);
 void addAdmin(Organization &o);
 void addManager(Organization &o);
+void addAnykey(Organization &o);
 void deleteEmployee(Organization &o);
 void changeEmployeeName(Organization &o);
 void changeEmployeeBirthdate(Organization &o);
@@ -39,10 +41,16 @@ void organization()
 	Organization o("STEP Computer Academy", 100000);
 	interface(o);
 
+
 	/*o.addEmployee(new Developer("Petya", Date_(1, 1, 1990), 1, 5, 5));
 	o.addEmployee(new Manager("Katya", Date_(5, 3, 1998), 0, 3, 300));
 	o.getInfo();
-	o.needForSalary();*/
+	o.needForSalary();
+	o.getInfo();
+	o.saveToFile();*/
+
+	/*o.readFromFile();
+	o.getInfo();*/
 
 	/*o.deleteEmployee(1);
 	o.getInfo();*/
@@ -55,13 +63,14 @@ void interface(Organization &o)
 	std::cout << "1. Add developer" << std::endl;
 	std::cout << "2. Add admin" << std::endl;
 	std::cout << "3. Add manager" << std::endl;
-	std::cout << "4. Delete employee" << std::endl;
-	std::cout << "5. Change employee name" << std::endl;
-	std::cout << "6. Change employee birthdate" << std::endl;
-	std::cout << "7. Change employee gender" << std::endl;
-	std::cout << "8. Change employee work experience" << std::endl;
-	std::cout << "9. Get need for salary" << std::endl;
-	std::cout << "10. Get organization information" << std::endl;
+	std::cout << "4. Add anykey" << std::endl;
+	std::cout << "5. Delete employee" << std::endl;
+	std::cout << "6. Change employee name" << std::endl;
+	std::cout << "7. Change employee birthdate" << std::endl;
+	std::cout << "8. Change employee gender" << std::endl;
+	std::cout << "9. Change employee work experience" << std::endl;
+	std::cout << "10. Get need for salary" << std::endl;
+	std::cout << "11. Get organization information" << std::endl;
 	int choose = 0;
 	std::cin >> choose;
 	switch (choose)
@@ -76,24 +85,27 @@ void interface(Organization &o)
 		addManager(o);
 		break;
 	case 4:
-		deleteEmployee(o);
+		addAnykey(o);
 		break;
 	case 5:
-		changeEmployeeName(o);
+		deleteEmployee(o);
 		break;
 	case 6:
-		changeEmployeeBirthdate(o);
+		changeEmployeeName(o);
 		break;
 	case 7:
-		changeEmployeeGender(o);
+		changeEmployeeBirthdate(o);
 		break;
 	case 8:
-		changeEmployeeExperience(o);
+		changeEmployeeGender(o);
 		break;
 	case 9:
-		needForSalary(o);
+		changeEmployeeExperience(o);
 		break;
 	case 10:
+		needForSalary(o);
+		break;
+	case 11:
 		information(o);
 		break;
 	default:
@@ -119,11 +131,8 @@ void addDeveloper(Organization &o)
 	int nmbProgLangs;
 	std::cout << "Enter developer number of programming languages" << std::endl;
 	std::cin >> nmbProgLangs;
-	std::string specialization;
-	std::cout << "Enter developer specialization" << std::endl;
-	std::cin >> specialization;
 	
-	o.addEmployee(new Developer(name, Date_(day, month, year), gender, experience, nmbProgLangs, specialization));
+	o.addEmployee(new Developer(name, Date_(day, month, year), gender, experience, nmbProgLangs));
 
 	system("cls");
 	interface(o);
@@ -174,6 +183,25 @@ void addManager(Organization &o)
 	std::cin >> nmbOfSales;
 
 	o.addEmployee(new Manager(name, Date_(day, month, year), gender, experience, nmbOfSales));
+
+	system("cls");
+	interface(o);
+}
+
+void addAnykey(Organization &o)
+{
+	system("cls");
+	std::string name;
+	std::cout << "Enter anykey name" << std::endl;
+	std::cin >> name;
+	int day, month, year;
+	std::cout << "Enter anykey birthdate using space(day month year)" << std::endl;
+	std::cin >> day >> month >> year;
+	bool gender;
+	std::cout << "Enter anykey gender(0 - female, 1 - male)" << std::endl;
+	std::cin >> gender;
+
+	o.addEmployee(new Anykey(name, Date_(day, month, year), gender));
 
 	system("cls");
 	interface(o);
