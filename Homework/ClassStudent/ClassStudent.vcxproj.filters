@@ -24,24 +24,12 @@
     <ClCompile Include="Group_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="String_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vector_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Student_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Group_.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="String_.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vector_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

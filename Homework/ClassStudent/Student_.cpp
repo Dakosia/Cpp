@@ -2,7 +2,7 @@
 
 
 
-Student_::Student_(String_ name, String_ surname, int age, int id, vector_<int> marks)
+Student_::Student_(std::string name, std::string surname, int age, int id, std::vector<int> marks)
 {
 	this->setName(name);
 	this->setSurname(surname);
@@ -11,12 +11,12 @@ Student_::Student_(String_ name, String_ surname, int age, int id, vector_<int> 
 	this->setMarks(marks);
 }
 
-void Student_::setName(String_ name)
+void Student_::setName(std::string name)
 {
 	this->name = name;
 }
 
-void Student_::setSurname(String_ surname)
+void Student_::setSurname(std::string surname)
 {
 	this->surname = surname;
 }
@@ -31,17 +31,17 @@ void Student_::setId(int id)
 	this->id = id;
 }
 
-void Student_::setMarks(vector_<int> marks)
+void Student_::setMarks(std::vector<int> marks)
 {
 	this->marks = marks;
 }
 
-String_ Student_::getName() const
+std::string Student_::getName() const
 {
 	return this->name;
 }
 
-String_ Student_::getSurname() const
+std::string Student_::getSurname() const
 {
 	return this->surname;
 }
@@ -56,7 +56,7 @@ int Student_::getId() const
 	return this->id;
 }
 
-vector_<int> Student_::getMarks() const
+std::vector<int> Student_::getMarks() const
 {
 	return this->marks;
 }
@@ -74,16 +74,24 @@ void Student_::deleteLastMark()
 int Student_::getAvgMark()
 {
 	int sum = 0;
-	for (size_t i = 0; i < this->marks.getSize(); i++)
+	for (size_t i = 0; i < this->marks.size(); i++)
 	{
 		sum += this->marks[i];
 	}
-	return sum / this->marks.getSize();;
+	return sum / this->marks.size();;
 }
 
 std::ostream & operator<<(std::ostream & out, const Student_ & obj)
 {
-	out << obj.name << std::endl << obj.surname;
-	out << std::endl << obj.age << std::endl << obj.id << std::endl << obj.marks;
+	out << "Name: " << obj.name << std::endl;
+	out << "Surname: " << obj.surname << std::endl;
+	out << "Age: " << obj.age << std::endl;
+	out << "ID: " << obj.id << std::endl;
+	out << "Marks: ";
+	for (size_t i = 0; i < obj.marks.size(); i++)
+	{
+		out << obj.marks[i] << ' ';
+	}
+	out << std::endl;
 	return out;
 }

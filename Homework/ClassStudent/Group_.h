@@ -3,16 +3,16 @@
 class Group_
 {
 private:
-	String_ groupName;
-	vector_<Student_> group;
+	std::string groupName;
+	std::vector<Student_> group;
 public:
-	Group_(String_ groupName = "Group Name", vector_<Student_> group = vector_<Student_>());
+	Group_(std::string groupName = "Group Name", std::vector<Student_> group = std::vector<Student_>());
 
-	void setGroupName(String_ groupName);
-	void setGroup(vector_<Student_> group);
+	void setGroupName(std::string groupName);
+	void setGroup(std::vector<Student_> group);
 
-	String_ getGroupName() const;
-	vector_<Student_> getGroup() const;
+	std::string getGroupName() const;
+	std::vector<Student_> getGroup() const;
 
 	void addStudent(Student_ student);
 	void deleteStudentById(int id);

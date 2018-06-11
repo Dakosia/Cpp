@@ -137,15 +137,11 @@
   <ItemGroup>
     <ClCompile Include="Group_.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="String_.cpp" />
     <ClCompile Include="Student_.cpp" />
-    <ClCompile Include="vector_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Group_.h" />
-    <ClInclude Include="String_.h" />
     <ClInclude Include="Student_.h" />
-    <ClInclude Include="vector_.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

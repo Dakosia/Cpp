@@ -1,30 +1,30 @@
 #pragma once
 #include <iostream>
-#include "String_.h"
-#include "vector_.h"
 #include <ctime>
+#include <vector>
+#include <string>
 class Student_
 {
 private:
-	String_ name;
-	String_ surname;
+	std::string name;
+	std::string surname;
 	int age;
 	int id;
-	vector_<int> marks;
+	std::vector<int> marks;
 public:
-	Student_(String_ name = "Name", String_ surname = "Surname", int age = 18, int id = 0, vector_<int> marks = vector_<int>());
+	Student_(std::string name = "Name", std::string surname = "Surname", int age = 18, int id = 0, std::vector<int> marks = std::vector<int>());
 
-	void setName(String_ name);
-	void setSurname(String_ surname);
+	void setName(std::string name);
+	void setSurname(std::string surname);
 	void setAge(int age);
 	void setId(int id);
-	void setMarks(vector_<int> marks);
+	void setMarks(std::vector<int> marks);
 
-	String_ getName() const;
-	String_ getSurname() const;
+	std::string getName() const;
+	std::string getSurname() const;
 	int getAge() const;
 	int getId() const;
-	vector_<int> getMarks() const;
+	std::vector<int> getMarks() const;
 
 	void addMark(int mark);
 	void deleteLastMark();
