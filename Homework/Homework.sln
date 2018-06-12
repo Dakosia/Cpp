@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CitiesGame", "CitiesGame\Ci
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Iterators", "Iterators\Iterators.vcxproj", "{1C52B4E6-4793-4882-9F1A-DDAAF5BD5A11}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.06.18", "12.06.18\12.06.18.vcxproj", "{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -241,6 +243,14 @@ Global
 		{1C52B4E6-4793-4882-9F1A-DDAAF5BD5A11}.Release|x64.Build.0 = Release|x64
 		{1C52B4E6-4793-4882-9F1A-DDAAF5BD5A11}.Release|x86.ActiveCfg = Release|Win32
 		{1C52B4E6-4793-4882-9F1A-DDAAF5BD5A11}.Release|x86.Build.0 = Release|Win32
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Debug|x64.ActiveCfg = Debug|x64
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Debug|x64.Build.0 = Debug|x64
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Debug|x86.ActiveCfg = Debug|Win32
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Debug|x86.Build.0 = Debug|Win32
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Release|x64.ActiveCfg = Release|x64
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Release|x64.Build.0 = Release|x64
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Release|x86.ActiveCfg = Release|Win32
+		{FB7CB327-FEA0-4531-9615-1D246DE1E4BD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
