@@ -1,8 +1,18 @@
 ﻿#include "Field.h"
 
+Field::Field()
+{
+	std::vector<int> v;
+	for (int i = 0; i < size + 2; i++)
+		v.push_back(0);
+	for (int i = 0; i < size + 2; i++)
+	{
+		userField.push_back(v);
+		pcField.push_back(v);
+	}
+}
 
-
-bool Field::check(int x, int y) const
+bool Field::check(int x, int y, std::vector<std::vector<int>>& field) const
 {
 	if (x == 0 || y == 0 || x == 11 || y == 11)
 		return false;
@@ -12,50 +22,68 @@ bool Field::check(int x, int y) const
 		{
 			/*if (i < 0 || j < 0 || i > 11 || j > 11)
 			return false;*/
-			if (this->field[i][j] != shoot_control::EMPTY)
-				return false;
-		}
-	}
-	return true;
-}
-//check for killed ships
-bool Field::killingCheck(int x, int y) const
-{
-	for (size_t i = x - 1; i < x + 2; i++)
-	{
-		for (size_t j = y - 1; j < y + 2; j++)
-		{
-			if (x == i && y == j)
-				continue;
-			if (this->field[i][j] == shoot_control::SHIP)
+			if (field[i][j] != shoot_control::EMPTY)
 				return false;
 		}
 	}
 	return true;
 }
 
-Field::Field()
+//check for killed ships
+bool Field::killingCheck(int x, int y, std::vector<std::vector<int>>& field) const
 {
-	field = std::vector<std::vector<int>>(12);
-	for (size_t i = 0; i < field.size(); i++)
+	if (field[x + 1][y] == shoot_control::SHIP ||
+		field[x - 1][y] == shoot_control::SHIP ||
+		field[x][y + 1] == shoot_control::SHIP ||
+		field[x][y - 1] == shoot_control::SHIP)
+		return false;
+
+	if (field[x - 1][y] == shoot_control::HIT ||
+		field[x + 1][y] == shoot_control::HIT)
 	{
-		for (size_t j = 0; j < field.size(); j++)
+		while (field[x - 1][y] != shoot_control::MISS &&
+			field[x - 1][y] != shoot_control::EMPTY)
+			--x;
+
+		while (field[x][y] != shoot_control::MISS &&
+			field[x][y] != shoot_control::EMPTY)
 		{
-			field[i].push_back(0);
+			if (field[x][y] == shoot_control::SHIP ||
+				field[x - 1][y] == shoot_control::SHIP ||
+				field[x + 1][y] == shoot_control::SHIP
+				)
+				return false;
+
+			++x;
 		}
 	}
+
+	if (field[x][y - 1] == shoot_control::HIT ||
+		field[x][y + 1] == shoot_control::HIT)
+	{
+		while ((field[x][y - 1] != shoot_control::MISS &&
+			field[x][y - 1] != shoot_control::EMPTY))
+			--y;
+
+		while (field[x][y] != shoot_control::MISS &&
+			field[x][y] != shoot_control::EMPTY)
+		{
+			if (field[x][y] == shoot_control::SHIP ||
+				field[x][y - 1] == shoot_control::SHIP ||
+				field[x][y + 1] == shoot_control::SHIP)
+				return false;
+
+			++y;
+		}
+	}
+
+	return true;
 }
 
 void Field::printField() const
 {
-	for (size_t i = 0; i < field.size(); i++)
-	{
-		for (size_t j = 0; j < field.size(); j++)
-		{
-			std::cout << field[i][j] << ' ';
-		}
-		std::cout << std::endl;
-	}
+	userMap();
+	pcMap();
 }
 
 void Field::generation()
@@ -66,22 +94,26 @@ void Field::generation()
 	2 - 3
 	1 - 4
 	*/
-	while (!addShip(ship::FOUR)) {}
-	for (size_t i = 0; i < 2; i++)
-	{
-		while (!addShip(ship::THREE)) {}
-	}
-	for (size_t i = 0; i < 3; i++)
-	{
-		while (!addShip(ship::TWO)) {}
-	}
-	for (size_t i = 0; i < 4; i++)
-	{
-		while (!addShip(ship::ONE)) {}
-	}
+	//user map
+	while (!addShip(ship::FOUR, userField));
+	for (int i = 0; i < 2; i++)
+		while (!addShip(ship::THREE, userField));
+	for (int i = 0; i < 3; i++)
+		while (!addShip(ship::TWO, userField));
+	for (int i = 0; i < 4; i++)
+		while (!addShip(ship::ONE, userField));
+
+	//PC map
+	while (!addShip(ship::FOUR, pcField));
+	for (int i = 0; i < 2; i++)
+		while (!addShip(ship::THREE, pcField));
+	for (int i = 0; i < 3; i++)
+		while (!addShip(ship::TWO, pcField));
+	for (int i = 0; i < 4; i++)
+		while (!addShip(ship::ONE, pcField));
 }
 
-bool Field::addShip(ship s)
+bool Field::addShip(ship s, std::vector<std::vector<int>>& field)
 {
 	int x = rand() % 10 + 1;
 	int y = rand() % 10 + 1;
@@ -91,10 +123,10 @@ bool Field::addShip(ship s)
 	{
 		if (direction)
 		{
-			if (!check(x + i, y))
+			if (!check(x + i, y, field))
 				return false;
 		}
-		else if (!check(x, y + i))
+		else if (!check(x, y + i, field))
 			return false;
 	}
 	for (size_t i = 0; i < s; i++)
@@ -109,56 +141,245 @@ bool Field::addShip(ship s)
 
 void Field::clear()
 {
-	for (size_t i = 0; i < field.size(); i++)
-	{
-		for (size_t j = 0; j < field.size(); j++)
-		{
-			field[i][j] = shoot_control::EMPTY;
-		}
-	}
+	for (auto i : userField)
+		for (auto j : i)
+			j = 0;
+
+	for (auto i : pcField)
+		for (auto j : i)
+			j = 0;
 }
 
-int Field::shoot(int x, int y)
+void Field::shoot(int x, int y, std::vector<std::vector<int>>& field)
 {
 	if (field[x][y] == shoot_control::EMPTY)
-	{
 		field[x][y] = shoot_control::MISS;
-		return shoot_control::MISS;
-	}
-	if (field[x][y] == shoot_control::SHIP)
+	if (field[x][y] == shoot_control::SHIP ||
+		field[x][y] == shoot_control::HIT)
 	{
-		if (killingCheck(x, y))
+		field[x][y] = shoot_control::HIT;
+		if (killingCheck(x, y, field))
 		{
-			//значит убили
-			fillKilledShip(x, y);
-			return shoot_control::KILL;
-		}
-		else
-		{
-			field[x][y] = shoot_control::HIT;
-			return shoot_control::HIT;
+			field[x][y] = shoot_control::KILL;
+			fillKilledShip(x, y, field);
 		}
 	}
-	return shoot_control::MISS;
+	return;
 }
 
-void Field::fillKilledShip(int x, int y)
+void Field::fillKilledShip(int x, int y, std::vector<std::vector<int>>& field)
 {
-	/*if (field[x][y] != shoot_control::HIT)
-	return;*/
-	for (size_t i = x - 1; i < x + 2; i++)
+	// Окружить одну ячейку
+	if ((field[x + 1][y] == shoot_control::EMPTY ||
+		field[x + 1][y] == shoot_control::MISS)
+		&&
+		(field[x - 1][y] == shoot_control::EMPTY ||
+			field[x - 1][y] == shoot_control::MISS)
+		&&
+		(field[x][y + 1] == shoot_control::EMPTY ||
+			field[x][y + 1] == shoot_control::MISS)
+		&&
+		(field[x][y - 1] == shoot_control::EMPTY ||
+			field[x][y - 1] == shoot_control::MISS))
 	{
-		for (size_t j = y - 1; j < y + 2; j++)
+		for (int i = x - 1; i < x + 2; i++)
 		{
-			if (x == i && y == j)
-				continue;
-			if (field[i][j] == shoot_control::HIT)
+			for (int j = y - 1; j < y + 2; j++)
 			{
-				fillKilledShip(i, j);
-				field[i][j] = shoot_control::KILL;
-			}
-			else
+				if (field[i][j] == shoot_control::HIT ||
+					field[i][j] == shoot_control::KILL)
+					continue;
+
 				field[i][j] = shoot_control::MISS;
+			}
 		}
 	}
+
+	//Левая или правая ячейка
+	if (field[x][y + 1] == shoot_control::HIT ||
+		field[x][y - 1] == shoot_control::HIT)
+	{
+		//Добежать до крайней ячейки корабля
+		while (field[x][y - 1] != shoot_control::EMPTY &&
+			field[x][y - 1] != shoot_control::MISS)
+			--y;
+
+		//Проставить мимо вокруг убитого корабля
+		while (field[x][y] != shoot_control::EMPTY &&
+			field[x][y] != shoot_control::MISS)
+		{
+			for (int i = x - 1; i < x + 2; i++)
+			{
+				for (int j = y - 1; j < y + 2; j++)
+				{
+					if (field[i][j] == shoot_control::HIT)
+						field[i][j] = shoot_control::KILL;
+					else if (field[i][j] == shoot_control::KILL);
+					else
+						field[i][j] = shoot_control::MISS;
+				}
+			}
+			++y;
+		}
+	}
+
+	//Верхняя или нижняя ячейка
+	if (field[x - 1][y] == shoot_control::HIT ||
+		field[x + 1][y] == shoot_control::HIT)
+	{
+		//Добежать до крайней ячейки корабля
+		while (field[x - 1][y] != shoot_control::EMPTY &&
+			field[x - 1][y] != shoot_control::MISS)
+			--x;
+
+		//Проставить мимо вокруг убитого корабля
+		while (field[x][y] != shoot_control::EMPTY &&
+			field[x][y] != shoot_control::MISS)
+		{
+			for (int i = x - 1; i < x + 2; i++)
+			{
+				for (int j = y - 1; j < y + 2; j++)
+				{
+					if (field[i][j] == shoot_control::HIT)
+						field[i][j] = shoot_control::KILL;
+					else if (field[i][j] == shoot_control::KILL);
+					else
+						field[i][j] = shoot_control::MISS;
+				}
+			}
+			++x;
+		}
+	}
+	return;
+}
+
+void Field::userAttack()
+{
+	int x, y, flag = 0;
+
+	while (flag != 1)
+	{
+		printField();
+
+		std::cin >> x >> y;
+		while (x < 0 || y < 0 || x > 11 || y > 11)
+			std::cin >> x >> y;
+
+		if (pcField[x][y] == shoot_control::EMPTY)
+			flag = 1;
+
+		if (pcField[x][y] == shoot_control::SHIP)
+			--pcCnt;
+
+		shoot(x, y, pcField);
+	}
+}
+
+void Field::pcAttack()
+{
+	int x, y, flag = 0;
+
+	while (flag != 1)
+	{
+		printField();
+
+		x = rand() % 10 + 1;
+		y = rand() % 10 + 1;
+
+		if (userField[x][y] == shoot_control::EMPTY)
+			flag = 1;
+
+		if (userField[x][y] == shoot_control::SHIP)
+			--userCnt;
+
+		shoot(x, y, userField);
+	}
+}
+
+void Field::game()
+{
+	generation();
+
+	while (true)
+	{
+		userAttack();
+		pcAttack();
+		if (pcCnt == 0 || userCnt == 0)
+			break;
+	}
+	system("cls");
+	if (pcCnt == 0)
+		std::cout << "You won!" << std::endl;
+	if (userCnt == 0)
+		std::cout << "PC won!" << std::endl;
+}
+
+void Field::userMap() const
+{
+	system("cls");
+	std::cout << "    1  2  3  4  5  6  7  8  9  10\n";
+	std::cout << "  _______________________________";
+	for (int i = 1; i < userField.size() - 1; i++)
+	{
+		std::cout << std::endl;
+		for (int j = 1; j < userField.size() - 1; j++)
+		{
+			if (i == 1 && j == 1) std::cout << " 1|";
+			else if (i == 2 && j == 1) std::cout << " 2|";
+			else if (i == 3 && j == 1) std::cout << " 3|";
+			else if (i == 4 && j == 1) std::cout << " 4|";
+			else if (i == 5 && j == 1) std::cout << " 5|";
+			else if (i == 6 && j == 1) std::cout << " 6|";
+			else if (i == 7 && j == 1) std::cout << " 7|";
+			else if (i == 8 && j == 1) std::cout << " 8|";
+			else if (i == 9 && j == 1) std::cout << " 9|";
+			else if (i == 10 && j == 1) std::cout << "10|";
+
+			if (userField[i][j] == shoot_control::EMPTY)
+				std::cout << " 0 ";
+			else if (userField[i][j] == shoot_control::HIT)
+				std::cout << " 2 ";
+			else if (userField[i][j] == shoot_control::KILL)
+				std::cout << " 3 ";
+			else if (userField[i][j] == shoot_control::MISS)
+				std::cout << " 4 ";
+			else
+				std::cout << " 1 ";
+		}
+	}
+	std::cout << std::endl;
+}
+
+void Field::pcMap() const
+{
+	std::cout << std::endl;
+	std::cout << "    1  2  3  4  5  6  7  8  9  10\n";
+	std::cout << "  _______________________________";
+	for (int i = 1; i < pcField.size() - 1; i++)
+	{
+		std::cout << std::endl;
+		for (int j = 1; j < pcField.size() - 1; j++)
+		{
+			if (i == 1 && j == 1) std::cout << " 1|";
+			else if (i == 2 && j == 1) std::cout << " 2|";
+			else if (i == 3 && j == 1) std::cout << " 3|";
+			else if (i == 4 && j == 1) std::cout << " 4|";
+			else if (i == 5 && j == 1) std::cout << " 5|";
+			else if (i == 6 && j == 1) std::cout << " 6|";
+			else if (i == 7 && j == 1) std::cout << " 7|";
+			else if (i == 8 && j == 1) std::cout << " 8|";
+			else if (i == 9 && j == 1) std::cout << " 9|";
+			else if (i == 10 && j == 1) std::cout << "10|";
+
+			if (pcField[i][j] == shoot_control::EMPTY || pcField[i][j] == shoot_control::SHIP)
+				std::cout << " 0 ";
+			else if (pcField[i][j] == shoot_control::HIT)
+				std::cout << " 2 ";
+			else if (pcField[i][j] == shoot_control::KILL)
+				std::cout << " 3 ";
+			else if (pcField[i][j] == shoot_control::MISS)
+				std::cout << " 4 ";
+		}
+	}
+	std::cout << std::endl;
 }
