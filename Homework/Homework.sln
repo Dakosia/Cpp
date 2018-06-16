@@ -53,6 +53,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.06.18", "12.06.18\12.06.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13.06.18", "13.06.18\13.06.18.vcxproj", "{98506E08-DA86-4099-A166-2D913324D5A0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dictionary", "Dictionary\Dictionary.vcxproj", "{C18A50FE-0C07-4755-A8D4-6E73831C02D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -261,6 +263,14 @@ Global
 		{98506E08-DA86-4099-A166-2D913324D5A0}.Release|x64.Build.0 = Release|x64
 		{98506E08-DA86-4099-A166-2D913324D5A0}.Release|x86.ActiveCfg = Release|Win32
 		{98506E08-DA86-4099-A166-2D913324D5A0}.Release|x86.Build.0 = Release|Win32
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Debug|x64.ActiveCfg = Debug|x64
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Debug|x64.Build.0 = Debug|x64
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Debug|x86.ActiveCfg = Debug|Win32
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Debug|x86.Build.0 = Debug|Win32
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Release|x64.ActiveCfg = Release|x64
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Release|x64.Build.0 = Release|x64
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Release|x86.ActiveCfg = Release|Win32
+		{C18A50FE-0C07-4755-A8D4-6E73831C02D5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
