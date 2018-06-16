@@ -1,6 +1,6 @@
 ﻿#include "CitiesGame.h"
 
-CitiesGame::CitiesGame(std::string dir)
+CitiesGame::CitiesGame(std::string dir, int maxPlayers)
 {
 	this->dir = dir;
 	std::fstream f(dir + "\\city.csv", std::ios::in);
@@ -11,6 +11,9 @@ CitiesGame::CitiesGame(std::string dir)
 		cities.insert(make_pair(str, 0));
 	}
 	f.close();
+
+	for (int i = 0; i < maxPlayers; i++)
+		this->maxPlayers.push_back(i);
 }
 
 void CitiesGame::play()
@@ -65,14 +68,26 @@ void CitiesGame::check_city(std::string city) const
 
 void CitiesGame::multiplay(int pos)
 {
-	while (1) {
-		std::fstream file(dir + "\\" + std::to_string(pos) + ".csv", std::ios::in);
+	while (true) {
+		std::fstream file(dir + "\\" + std::to_string(maxPlayers[pos - 1]) + ".csv", std::ios::in);
+		std::ifstream fIn;
 		while (file.fail()) {
-			file.open(dir + "\\" + std::to_string(pos) + ".csv", std::ios::in);
-			std::cout << "Ожидаем своей очереди\n";
+			file.open(dir + "\\" + std::to_string(maxPlayers[pos - 1]) + ".csv", std::ios::in);
+			//std::cout << "Ожидаем своей очереди\n";
 			Sleep(1000);
-			system("cls");
+			for (int i = 0; i < maxPlayers.size(); i++)
+			{
+				fIn.open(dir + "\\" + std::to_string(maxPlayers[i]) + ".csv");
+				if (fIn.is_open())
+				{
+					system("cls");
+					std::cout << i + 1 << " игрок ходит"  << std::endl;
+					break;
+				}
+			}
+			fIn.close();
 		}
+		system("cls");
 		std::vector<std::string> oldCities;
 		std::string c;
 		while (!file.eof()) {
@@ -95,19 +110,19 @@ void CitiesGame::multiplay(int pos)
 					throw std::exception("Город уже был!");
 			if (oldCities.size() > 0) {
 
-				if (c[0] != lastChar&&lastChar != '.')
+				if (c[0] != lastChar && lastChar != '.')
 					throw std::exception("Неверная буква!");
 			}
-			file.open(dir + "\\" + std::to_string(pos) + ".csv", std::ios::app);
+			file.open(dir + "\\" + std::to_string(maxPlayers[pos - 1]) + ".csv", std::ios::app);
 			file << "\n" << c;
 			file.close();
-			if (pos == 9)
+			if (maxPlayers[pos - 1] == maxPlayers.size() - 1)
 			{
-				std::string rename = "ren " + dir + "\\" + std::to_string(9) + ".csv " + std::to_string(1) + ".csv";
+				std::string rename = "ren " + dir + "\\" + std::to_string(maxPlayers[pos - 1]) + ".csv " + std::to_string(0) + ".csv";
 				system(rename.c_str());
 			}
 			else {
-				std::string rename = "ren " + dir + "\\" + std::to_string(pos) + ".csv " + std::to_string(pos + 1) + ".csv";
+				std::string rename = "ren " + dir + "\\" + std::to_string(maxPlayers[pos - 1]) + ".csv " + std::to_string(maxPlayers[pos]) + ".csv";
 				system(rename.c_str());
 			}
 
