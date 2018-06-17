@@ -10,9 +10,9 @@ class CitiesGame {
 	std::map < std::string, int > cities;
 	char nextWord = '.';
 	std::string dir;
-	std::vector<int> maxPlayers;
+	std::vector<int> players;
 public:
-	CitiesGame(std::string dir, int maxPlayers);
+	CitiesGame(std::string dir, int players);
 	void play();
 	void check_city(std::string city) const;
 	void multiplay(int pos);
